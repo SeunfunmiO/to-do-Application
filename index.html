@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>to-do</title>
+    <link rel="shortcut icon" href="./Faveicon.png" type="image/x-icon">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-4Q6Gf2aSP4eDXB8Miphtr37CMZZQ5oXLH2yaXMJ2w8e2ZtHTl7GptT4jmndRuHDT" crossorigin="anonymous">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Edu+SA+Hand:wght@400..700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            background: linear-gradient(to left, #88a3e8, #a8aab2);
+        }
+
+        .container {
+            font-family: "Lora", serif;
+        }
+    </style>
+
+</head>
+
+<body>
+    <div class="container-fluid py-5">
+        <div class="col-8 shadow-sm m-auto p-3">
+            <h2 class="text-center text-decoration-underline">TO-DO APPLICATION</h2>
+            <div class="alert alert-danger" role="alert" style="display: none;" id="warningMsg">
+                Please enter a task
+            </div>
+            <input type="text" class="mb-3 form-control" placeholder="Enter a task" id="todo">
+            <button class="btn-primary btn w-100 mb-3" onclick="addTodo()">Add To-do</button>
+            <button class="btn btn-danger w-100 mb-3" onclick="deleteAll()">Delete All</button>
+        </div>
+        <div class="container" id="myScreen"></div>
+    </div>
+
+    <script>
+        let allTodos = []
+        function addTodo(params) {
+            let todo = document.getElementById('todo').value
+            let myScreen = document.getElementById('myScreen')
+
+
+            if (!todo.trim()) {
+                warningMsg.style.display = 'block'
+            }
+            else {
+                warningMsg.style.display = 'none'
+                allTodos.push(todo)
+                console.log(allTodos);
+                myScreen.innerHTML += ''
+
+
+                displayAll()
+                document.getElementById('todo').value = ''
+
+                // myScreen.innerHTML += `<p>${todo}</p>`
+
+            }
+
+        }
+        function displayAll(params) {
+            let htmlList = '<ol>'
+            for (let i = 0; i < allTodos.length; i++) {
+                htmlList += `<li>${allTodos[i]}</li>
+            <button class="btn-info btn mb-3" onclick="editTodo(${i})">Edit task</button>
+            <button class="btn-warning btn  mb-3" onclick="deleteTasks()">Delete task</button>
+                    `
+            }
+            htmlList += '</ol>'
+
+            myScreen.innerHTML = htmlList
+        }
+        function deleteAll(params) {
+            let deleted = confirm('Are you sure you want to delete all tasks? This action is irreversible!')
+            if (deleted) {
+                allTodos = [];
+                displayAll()
+            }
+
+        }
+        function editTodo(i) {
+            let newTodo = prompt(`Enter the new task`, allTodos[i])
+            if (newTodo != null && newTodo.trim()) {
+                allTodos.splice(i, 1, newTodo)
+                // allTodos[i] = newTodo
+                displayAll()
+
+
+            }
+
+        }
+        function deleteTasks(i) {
+            let deleted = confirm('Are you sure you want to delete task? This action is irreversible')
+            if (deleted) {
+                allTodos.splice(i, 1)
+                displayAll()
+            }
+
+        }
+    </script>
+</body>
+
+</html>
