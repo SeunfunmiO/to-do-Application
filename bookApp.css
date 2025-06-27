@@ -1,0 +1,45 @@
+* {
+    box-sizing: border-box;
+    margin: 0%;
+    padding: 0%;
+}
+
+@media screen and (max-width: 768px) {
+
+    body,
+    input,
+    button {
+        font-size: 12px !important;
+    }
+}
+
+@media screen and (max-width: 430px) {
+    img {
+        width: 84px !important;
+    }
+
+    tr {
+        display: flex;
+        flex-wrap: wrap;
+        flex-direction: column;
+    }
+
+}
+
+@media screen and (max-width: 375px) {
+    img {
+        width: 80px !important;
+    }
+
+    button {
+        font-size: 12px !important;
+    }
+
+}
+
+@media screen and (max-width: 320px) {
+    img {
+        width: 65px !important;
+    }
+
+}

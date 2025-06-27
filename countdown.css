@@ -1,0 +1,14 @@
+* {
+    margin: 0%;
+    padding: 0%;
+    box-sizing: border-box;
+}
+
+@media screen and (max-width: 375px) {
+    .timer-font{
+        font-size: xx-small !important;
+    }
+    #displaySeconds , #displayMinutes , #displayHours , #displayMilliseconds{
+        font-size: 12px !important;
+    }
+}
